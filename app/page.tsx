@@ -1,5 +1,5 @@
-import GlowdeskApp from "@/components/glowdesk-app";
+import CreatorCommerceApp from "@/components/creator-commerce-app";
 
 export default function Home() {
-  return <GlowdeskApp />;
+  return <CreatorCommerceApp />;
 }

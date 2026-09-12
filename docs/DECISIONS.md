@@ -1,5 +1,38 @@
 # Decisions log
 
+## 2026-09-12 — Creator-led shoppable beauty platform demo
+
+Glowdesk is exploring a broader creator-commerce direction: **watch the demo,
+try the complete look, then shop every tagged product**. The product combines
+an immersive beauty content feed, virtual try-on, creator storefronts, and a
+commerce handoff without attempting to reproduce a general-purpose social
+network or ecommerce platform.
+
+The initial market wedge remains intentionally narrow: makeup creators using a
+curated catalog of supported brands and shades. Creators publish short demos,
+tag the exact products used, configure a virtual version of the look, and keep
+attribution through product discovery, try-on, and checkout. Consumers can add
+individual items or a complete creator edit to a locally persisted bag.
+
+The frontend concept demonstrates:
+
+1. a vertical creator-led shoppable feed;
+2. one-tap handoff from a creator demo to virtual try-on;
+3. product detail and creator storefront surfaces;
+4. individual and full-look bag actions;
+5. creator attribution and commission disclosure;
+6. a Creator Studio for composing and publishing a tagged demo;
+7. mocked content, conversion, and earnings metrics.
+
+A real unified basket is deferred until Glowdesk can connect merchant catalog,
+variant, price, inventory, fulfillment, returns, and attribution data. The
+practical first commerce release should use disclosed affiliate or connected
+Shopify checkout handoffs. Consultation workflows can remain an optional tool
+for service-led creators rather than the primary consumer experience.
+
+This branch is an evaluation demo. Video playback, facial tracking, inventory,
+checkout, affiliate attribution, publishing, and earnings remain mocked.
+
 ## 2026-09-04 — Professional-led visual consultations
 
 Glowdesk is positioned as a shoppable visual consultation platform rather than

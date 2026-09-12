@@ -1,21 +1,26 @@
-# GlowDesk (working title)
+# Glowdesk
 
-White-label consultation platform for makeup artists, skincare specialists, and beauty therapists.
-AI skin analysis (Perfect Corp / YouCam API) is the **hook**; the **product** is the client
-workflow: consult → record → recommend → rebook.
+Creator-led beauty commerce where people watch a look being made, try the
+creator's virtual edit, and shop every tagged product.
 
-## Why this exists
+## Product loop
 
-- Perfect Corp sells the scanner directly to practitioners (Skincare Pro). We do NOT compete on
-  analysis quality — we win on everything around it: client history, before/after tracking,
-  product recommendations with retail margin, rebooking, and consent-compliant record keeping.
-- Perfect Corp's YouCam API "Project Management" (June 2026) supports per-client API keys and
-  pooled bulk units — designed for exactly this agency/white-label deployment model.
+1. A beauty creator publishes a short product demo and tags the exact products
+   and shades used.
+2. A viewer discovers the demo in an immersive feed.
+3. One tap opens the complete virtual look in the try-on studio.
+4. The viewer buys one item or the complete edit.
+5. Creator attribution remains attached through the commerce handoff.
 
-## Golden rule
+The current branch is a frontend concept. Product demos, virtual makeup,
+inventory, checkout, affiliate attribution, and creator earnings are simulated.
+Uploaded selfies remain local to the browser.
 
-**The analysis vendor is swappable.** All Perfect Corp calls go through `src/adapters/skin-analysis/`.
-Nothing outside the adapter may import vendor SDKs or know vendor response shapes.
+## Integration rule
+
+**Analysis and try-on vendors remain swappable.** Perfect Corp or another
+provider must be integrated behind `src/adapters/`; client components must not
+import vendor SDKs or know vendor response shapes.
 
 ## Repo layout
 
@@ -28,7 +33,9 @@ supabase/        Schema + RLS policies (multi-tenant from day one)
 
 ## Getting started
 
-1. Read `docs/ORCHESTRATION.md` — it defines how work is sequenced and what "done" means per milestone.
-2. Milestone 0 is a **validation spike**, not product code. Do not skip it.
-3. Copy `.env.example` → `.env.local`, fill in your YouCam API key (free trial credits available
-   at yce.perfectcorp.com).
+```bash
+npm install
+npm run dev
+```
+
+No external credentials are required for the demo.
