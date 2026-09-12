@@ -225,6 +225,8 @@ export default function CreatorCommerceApp() {
       <DesktopRail view={view} setView={setView} bagCount={bagCount} />
       <MobileHeader
         bagCount={bagCount}
+        onFeed={() => setView("feed")}
+        onSearch={() => setToast("Creator and look search previewed")}
         onBag={() => setView("bag")}
         onStudio={() => setView("studio")}
       />
@@ -239,6 +241,7 @@ export default function CreatorCommerceApp() {
             openProduct={setActiveProduct}
             openCreator={setActiveCreator}
             share={share}
+            notify={setToast}
           />
         )}
         {view === "try" && (
@@ -390,21 +393,29 @@ function DesktopRail({
 
 function MobileHeader({
   bagCount,
+  onFeed,
+  onSearch,
   onBag,
   onStudio,
 }: {
   bagCount: number;
+  onFeed: () => void;
+  onSearch: () => void;
   onBag: () => void;
   onStudio: () => void;
 }) {
   return (
     <header className={styles.mobileHeader}>
-      <button className={styles.mobileBrand} aria-label="Glowdesk feed">
+      <button
+        className={styles.mobileBrand}
+        aria-label="Glowdesk feed"
+        onClick={onFeed}
+      >
         glow<span>desk</span>
         <small>beta</small>
       </button>
       <div>
-        <button aria-label="Search creators and looks">
+        <button aria-label="Search creators and looks" onClick={onSearch}>
           <Search />
         </button>
         <button aria-label="Open shopping bag" onClick={onBag}>
@@ -502,6 +513,7 @@ function CreatorFeed({
   openProduct,
   openCreator,
   share,
+  notify,
 }: {
   savedLooks: string[];
   toggleSaved: (lookId: string) => void;
@@ -510,6 +522,7 @@ function CreatorFeed({
   openProduct: (product: Product) => void;
   openCreator: (creator: Creator) => void;
   share: (look: Look) => Promise<void>;
+  notify: (message: string) => void;
 }) {
   const [playingId, setPlayingId] = useState(looks[0].id);
   const [filter, setFilter] = useState("For you");
@@ -586,7 +599,12 @@ function CreatorFeed({
 
               <div className={styles.videoTopline}>
                 <span><Zap /> Shoppable demo</span>
-                <button aria-label="More options"><MoreHorizontal /></button>
+                <button
+                  aria-label={`More options for ${look.title}`}
+                  onClick={() => notify(`${look.title} options previewed`)}
+                >
+                  <MoreHorizontal />
+                </button>
               </div>
 
               <button
@@ -1248,7 +1266,12 @@ function CreatorStudio({
               <p className={styles.eyebrow}>Your content</p>
               <h2>Top shoppable looks</h2>
             </div>
-            <button aria-label="Content filters"><MoreHorizontal /></button>
+            <button
+              aria-label="Content filters"
+              onClick={() => notify("Content filters previewed")}
+            >
+              <MoreHorizontal />
+            </button>
           </div>
           <div className={styles.contentList}>
             {looks
@@ -1389,6 +1412,7 @@ function CreatorDrawer({
   addLook: (look: Look) => void;
 }) {
   const creatorLooks = looks.filter((look) => look.creatorId === creator.id);
+  const [following, setFollowing] = useState(false);
 
   return (
     <Drawer title="Creator storefront" close={close}>
@@ -1400,7 +1424,12 @@ function CreatorDrawer({
             <h2>{creator.name} <BadgeCheck /></h2>
             <span>{creator.handle}</span>
           </div>
-          <button>Follow</button>
+          <button
+            onClick={() => setFollowing((current) => !current)}
+            aria-pressed={following}
+          >
+            {following ? "Following" : "Follow"}
+          </button>
         </header>
         <p>{creator.bio}</p>
         <div className={styles.creatorStats}>
