@@ -1,3 +1,16 @@
+-- ============================================================================
+-- DRAFT — DO NOT APPLY TO A DATABASE THAT HOLDS REAL DATA.
+--
+-- This file predates the V2 pivot. It enables NO row-level security and
+-- defines NO policies; its comments are not enforcement. It also lacks
+-- same-tenant relationship constraints, append-only consent history, storage
+-- policies, and every V2 table (expert profiles, variants, offers, look
+-- revisions, briefs, commerce ledger, moderation, audit).
+--
+-- Phase 2 replaces it with reviewed, versioned migrations in
+-- supabase/migrations/ plus policy tests. See docs/GLOWDESK_V2_IDE_HANDOVER.md §9–§10.
+-- ============================================================================
+
 -- GlowDesk multi-tenant schema (M1). RLS policies to be added alongside — every table
 -- below MUST have RLS enabled with tenant isolation before M1 gate passes.
 

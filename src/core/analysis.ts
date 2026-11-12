@@ -1,4 +1,7 @@
 /**
+ * DEFERRED CAPABILITY (V2): cosmetic skin analysis is not part of the launch
+ * flow and is NOT virtual try-on — see src/core/try-on.ts for that contract.
+ *
  * Vendor-agnostic skin analysis contract.
  * NOTHING outside src/adapters/ may know about Perfect Corp response shapes.
  */

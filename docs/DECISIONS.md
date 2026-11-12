@@ -64,3 +64,46 @@ Useful research:
 - [Baymard: Beauty e-commerce UX](https://baymard.com/blog/beauty-cosmetics-ecommerce)
 - [Unsplash License](https://unsplash.com/license)
 - [Pexels License](https://www.pexels.com/license/)
+
+## 2026-11-12 — V2 pivot: expert-led verified shoppable looks
+
+**Agreed direction.** Glowdesk becomes the expert-led platform for shoppable
+beauty looks, with the consultation and rebooking workflow underneath. The
+core sequence changes from *skin analysis → consultation → recommendations →
+rebook* to *expert look → optional try-on → shop or brief/book → follow-up*.
+A customer no longer needs a consultation to discover or shop a look. The full
+specification is `docs/GLOWDESK_V2_IDE_HANDOVER.md`.
+
+This supersedes parts of the two 2026-09-04 entries above, which are kept as
+history:
+
+- Entry is now **looks-first**, not camera-first. Try-on is optional.
+- Discovery is a curated cross-expert list; an expert's studio still keeps the
+  co-branded "powered by Glowdesk" relationship, and a private brief always
+  goes to exactly one studio.
+- The simulated weeks-to-skincare-result timeline is retired. Cosmetic skin
+  analysis is a separate, deferred capability, not a launch dependency.
+- It is not an open marketplace: invite-led onboarding, vetted experts,
+  controlled catalog, retailer-direct checkout.
+
+**Recommended defaults adopted in the first slice** (changeable by a new entry):
+
+- Route map and domain model as in the handover §6 and §9.
+- `APP_MODE=demo|pilot`; pilot fails closed until persistence and providers
+  exist. Demo shows a persistent label and never claims a real outcome.
+- Public content is served only through a projection that requires an approved
+  expert and an approved, attested, disclosed revision.
+- Candidate disclosure copy: "Ad — the creator and Glowdesk may earn
+  commission if you buy." Not yet validated for any launch market.
+- **Fonts:** keep the repository's Italiana / Instrument Sans / Spline Sans
+  Mono system. The hosted mockup's Cormorant Garamond / DM Sans are not mixed
+  in. No rebrand.
+- One fixture change: the look "Blue Note" is now authored by Maya Clarke (it
+  uses her portrait), so the demo studio shows both authored and curated looks.
+- Vitest for domain tests.
+
+**Unresolved** (must be decided before the affected feature goes live): launch
+market, verification standard, affiliate model and commission split,
+subscription price, try-on provider, retailer agreements, retention periods,
+payout process, pilot thresholds. The earlier "≥ £25/mo" research gate is not
+agreed pricing.
